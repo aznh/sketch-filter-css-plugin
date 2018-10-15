@@ -4,15 +4,16 @@
   "icon": "icon.png",
   "commands": [
     {
-      "name": "my-command",
-      "identifier": "my-command-identifier",
-      "script": "./my-command.js"
+      "name": "Copy filtered CSS Attributes",
+      "identifier": "filter-css",
+      "script": "./filter-css.js",
+      "shortcut": "ctrl shift v"
     }
   ],
   "menu": {
-    "title": "sketch-filter-css-plugin",
+    "title": "Filter Css",
     "items": [
-      "my-command-identifier"
+      "filter-css"
     ]
   }
 }
