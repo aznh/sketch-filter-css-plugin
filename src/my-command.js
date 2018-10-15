@@ -1,4 +1,5 @@
 import sketch from 'sketch'
+const pasteBoard = NSPasteboard.generalPasteboard();
 
 const exceptionCssProperties = [
   "font-family"
@@ -13,6 +14,8 @@ export default function() {
   const selection = doc.selectedLayers
   const selectedCount = selection.length
 
+  pasteBoard.clearContents();
+
   if (selectedCount == 0) {
     return sketch.UI.message('layers are not selected.')
   }
@@ -23,4 +26,6 @@ export default function() {
 
     return !exceptionCssProperties.includes(property)
   }).join('\n')
+
+  pasteBoard.writeObjects([layerCss]);
 }

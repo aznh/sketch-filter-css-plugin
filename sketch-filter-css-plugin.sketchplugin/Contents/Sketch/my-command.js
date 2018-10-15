@@ -103,6 +103,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sketch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sketch */ "sketch");
 /* harmony import */ var sketch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sketch__WEBPACK_IMPORTED_MODULE_0__);
 
+var pasteBoard = NSPasteboard.generalPasteboard();
 var exceptionCssProperties = ["font-family"];
 
 function getLayerCss(layer) {
@@ -113,6 +114,7 @@ function getLayerCss(layer) {
   var doc = sketch__WEBPACK_IMPORTED_MODULE_0___default.a.getSelectedDocument();
   var selection = doc.selectedLayers;
   var selectedCount = selection.length;
+  pasteBoard.clearContents();
 
   if (selectedCount == 0) {
     return sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message('layers are not selected.');
@@ -123,6 +125,7 @@ function getLayerCss(layer) {
     var property = style.split(':')[0];
     return !exceptionCssProperties.includes(property);
   }).join('\n');
+  pasteBoard.writeObjects([layerCss]);
 });
 
 /***/ }),
