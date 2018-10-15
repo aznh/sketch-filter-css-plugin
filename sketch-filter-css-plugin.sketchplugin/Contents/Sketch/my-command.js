@@ -102,10 +102,27 @@ var exports =
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sketch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sketch */ "sketch");
 /* harmony import */ var sketch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sketch__WEBPACK_IMPORTED_MODULE_0__);
- // documentation: https://developer.sketchapp.com/reference/api/
+
+var exceptionCssProperties = ["font-family"];
+
+function getLayerCss(layer) {
+  return layer.sketchObject.CSSAttributes().slice(1);
+}
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("It's alive 🙌");
+  var doc = sketch__WEBPACK_IMPORTED_MODULE_0___default.a.getSelectedDocument();
+  var selection = doc.selectedLayers;
+  var selectedCount = selection.length;
+
+  if (selectedCount == 0) {
+    return sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message('layers are not selected.');
+  }
+
+  var selectedLayer = selection.layers[0];
+  var layerCss = getLayerCss(selectedLayer).filter(function (style) {
+    var property = style.split(':')[0];
+    return !exceptionCssProperties.includes(property);
+  }).join('\n');
 });
 
 /***/ }),
